@@ -38,6 +38,41 @@ See http://nagiosplug.sourceforge.net/developer-guidelines.html#THRESHOLDFORMAT
 for details and examples of the threshold form
 ```
 
+### Icinga2 configuration example
+
+#### Host Definition
+
+```
+object Host "LaserJet" {
+  import "generic-host"
+  address = "10.24.x.y"
+  vars.client_endpoint = SatelliteName
+  vars.notification["mail"] = {
+    groups = [ "icingaadmins" ]
+  }
+  vars.hp_supply_actions = [
+        "supply_black",
+        "supply_cyan",
+        "supply_magenta",
+        "supply_yellow"
+  ]
+}
+
+```
+
+#### Apply Definition
+
+```
+apply Service "HP-" for (toner in host.vars.hp_supply_actions) to Host {
+        check_command = "check_hp_supply"
+        command_endpoint = host.vars.client_endpoint
+
+        vars.check_hp_supply_action = toner
+
+        assign where host.address && host.vars.hp_supply_actions
+}
+```
+
 ### What is this fork ? 
 
 This fork of the plug-in replaces `Nagios::Plugin` with the more generic `Monitoring::Plugin` CPAN module.
