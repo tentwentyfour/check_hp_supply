@@ -1,8 +1,6 @@
 #!/usr/bin/perl -w
 
 #
-# $Id: check_hp_supply.pl / Version 1.2 / 2012-10-24 14:38 / projects@thesysadmin.net
-#
 # Copyright (C) 2012 Martin Mueller,
 #
 # This program is free software; you can redistribute it and/or
@@ -19,15 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
-# Report bugs to:  projects@thesysadmin.net
-#
-#
-# CHANGELOG:
-#
-# 1.0 - 17.03.2010 - First public version
-# 1.1 - 21.06.2011 - Added DB-Support for current Supply-Status (need for eventhandler)
-# 1.2 - 24.10.2012 - Removed DB-Support for Nagios-Check it is not needed, small bugfixes
-#
+# Report bugs to:  hello@tentwentyfour.lu
 
 $ENV{'PATH'}='';
 $ENV{'BASH_ENV'}='';
@@ -42,7 +32,6 @@ use FindBin;
 use lib "$FindBin::Bin/../perl/lib";
 use Monitoring::Plugin qw(%ERRORS);
 
-#use Net::SNMP qw(TRANSLATE_NONE);
 use Net::SNMP;
 use Getopt::Long qw(:config no_ignore_case bundling);
 
@@ -53,7 +42,7 @@ $PROGRAMNAME = "$FindBin::Script";
 $SHORTNAME = "Check HP Supply-Status";
 $AUTHOR = "Martin Mueller";
 $COPYR = "Copyright (C) 2012";
-$VERSION = "Version: 1.2";
+$VERSION = "Version: 1.2.1";
 
 sub usage();
 sub help();
