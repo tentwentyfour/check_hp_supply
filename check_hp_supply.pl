@@ -171,7 +171,10 @@ my $supply_type = &get_snmpdata($base_oid,$supply_type_oid,$supply_oid);
 
 my $supply_status = (100*$supply_used/$supply_capacity);
 
-if ($supply_status <= $critical) {
+if ($supply_status == "-2") {
+        $np->add_message('CRITICAL',$supply_type." - Level too low to get a reading");
+        }
+elsif ($supply_status <= $critical) {
 	$np->add_message('CRITICAL',$supply_type." = ".$supply_status." %");
 	}
 elsif ($supply_status <= $warning) {
