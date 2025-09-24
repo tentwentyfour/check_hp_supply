@@ -191,7 +191,7 @@ else {
 $np->add_perfdata(
 	label => $supply_type,
 	value => $supply_status,
-	uom => "Percent",
+	uom => "%",
 	min => 0,
 	max => 100,
 	);
